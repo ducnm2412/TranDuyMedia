@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-const shots = ["hero", "reel1", "reel2", "reel4", "reel5", "b025", "reel6", "reel7", "reel3"];
+// Ảnh hero nằm riêng trong public/hero/ để tiện chỉnh tỉ lệ
+const shots = ["hero", "reel1", "reel4", "reel6", "reel7"];
 
 /** Hero montage: tự cắt cảnh 3,5s/cảnh kèm chớp sáng, REC + timecode. */
 export default function Hero() {
@@ -22,7 +23,7 @@ export default function Hero() {
   return (
     <section className="hero">
       <div className="montage">
-        {shots.map((s, i) => <img key={s} src={`/images/${s}.jpg`} alt="" className={i === idx ? "on" : ""} />)}
+        {shots.map((s, i) => <img key={s} src={`/hero/${s}.jpg`} alt="" className={i === idx ? "on" : ""} />)}
       </div>
       <div key={flash} className={`flash${flash ? " go" : ""}`} />
       <div className="vf"><i /><i /><i /><i /></div>

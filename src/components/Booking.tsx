@@ -30,6 +30,7 @@ export default function Booking() {
             <a href={`tel:${site.phone}`}>☎ {site.phoneDisplay}</a>
             <a href={site.zalo} target="_blank" rel="noopener">Zalo {site.phoneDisplay}</a>
             <a href={site.facebook} target="_blank" rel="noopener">Facebook / TranDuyMedia</a>
+            <a href={`mailto:${site.email}`} style={{ fontSize: "clamp(18px,2vw,26px)", textTransform: "none" }}>{site.email}</a>
           </div>
         </div>
         <form className="rv" noValidate onSubmit={onSubmit}>

@@ -32,7 +32,7 @@ export default function About() {
             <h2 className="d">Hơn 10 năm<br />đồng hành<br />cùng doanh nghiệp</h2>
             <p>TRAN DUY Media Studio bắt đầu từ một ê-kíp quay dựng nhỏ, nay gia công trọn gói video thương mại cho khách hàng, đối tác và doanh nghiệp tại TP.HCM.</p>
             <p>Uy tín trong cam kết. Trách nhiệm với tiến độ. Tâm huyết trong từng khung hình. Mỗi dự án một người phụ trách xuyên suốt.</p>
-            <a href="#datlich" className="btn" style={{ color: "var(--ink)" }}>Bắt đầu dự án</a>
+            <a href="/lien-he#datlich" className="btn" style={{ color: "var(--ink)" }}>Bắt đầu dự án</a>
           </div>
         </div>
       </div>

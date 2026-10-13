@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { site } from "@/lib/site";
+import MapSection from "./MapSection";
 
 export default function Footer() {
   return (
@@ -7,9 +9,10 @@ export default function Footer() {
         <div className="top">
           <div><img src="/images/logo_w.png" alt="TRAN DUY Media" /><p style={{ marginTop: 14, maxWidth: "34ch" }}>Sản xuất video thương mại, chụp ảnh thương mại, cho thuê studio tại TP.HCM.</p></div>
           <div className="cols">
-            <ul><li><a href="#dichvu">Sản xuất video</a></li><li><a href="#studio">Thuê studio</a></li><li><a href="#dichvu">Chụp ảnh</a></li><li><a href="#quytrinh">Quy trình</a></li></ul>
-            <ul><li><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></li><li><a href={site.zalo} target="_blank" rel="noopener">Zalo</a></li><li><a href={site.facebook} target="_blank" rel="noopener">Facebook</a></li><li><a href="#datlich">Đặt lịch</a></li></ul>
+            <ul><li><Link href="/dich-vu/san-xuat-video">Sản xuất video</Link></li><li><Link href="/dich-vu/thue-studio">Thuê studio</Link></li><li><Link href="/dich-vu/chup-anh">Chụp ảnh</Link></li><li><Link href="/quy-trinh">Quy trình</Link></li></ul>
+            <ul><li><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></li><li><a href={site.zalo} target="_blank" rel="noopener">Zalo</a></li><li><a href={site.facebook} target="_blank" rel="noopener">Facebook</a></li><li><a href={`mailto:${site.email}`} style={{ textTransform: "none" }}>{site.email}</a></li><li><Link href="/lien-he#datlich">Đặt lịch</Link></li></ul>
           </div>
+          <MapSection />
         </div>
         <div className="bottom"><span>© 2026 {site.name}</span><span>Uy tín · Trách nhiệm · Tâm huyết</span></div>
       </div>

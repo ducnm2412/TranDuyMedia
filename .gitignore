@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# video nặng, không đưa lên git (GitHub giới hạn 100MB)
+/public/video/

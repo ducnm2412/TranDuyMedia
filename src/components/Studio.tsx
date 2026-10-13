@@ -28,7 +28,7 @@ export default function Studio() {
           <div className="price rv">
             <strong>Giá theo giờ</strong>
             <p>Báo giá tùy concept và thiết bị. Gửi ngày dự kiến, phản hồi lịch trống trong ngày.</p>
-            <a href="#datlich" className="btn btn-fill">Kiểm tra lịch trống</a>
+            <a href="/lien-he#datlich" className="btn btn-fill">Kiểm tra lịch trống</a>
           </div>
         </div>
       </div>

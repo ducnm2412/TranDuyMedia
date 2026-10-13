@@ -4,9 +4,11 @@ export const site = {
   phoneDisplay: "0971 542 026",
   zalo: "https://zalo.me/0971542026",
   facebook: "https://www.facebook.com/TranDuyMedia",
-  address: "456/26 Huỳnh Tấn Phát, KP 7, Nhà Bè, TP.HCM",
+  address: "456/26 Huỳnh Tấn Phát, KP7, Nhà Bè, TP.HCM",
+  email: "tranduymediagroup@gmail.com",
+  areas: "Nhà Bè, TP.HCM · Hà Nội · Tiền Giang · các tỉnh lân cận",
   mapsUrl: "https://www.google.com/maps/search/456%2F26+Hu%E1%BB%B3nh+T%E1%BA%A5n+Ph%C3%A1t+Nh%C3%A0+B%C3%A8",
-  // Link nhúng showreel: YouTube/Vimeo embed hoặc Google Drive dạng /file/d/ID/preview (file phải chia sẻ "Bất kỳ ai có đường liên kết")
-  showreelEmbed: "https://drive.google.com/file/d/19DR3UPv3AmpooQNPgFV38D0IB7r382G7/preview",
+  // File video showreel trong public/ (tự phát tắt tiếng khi cuộn tới)
+  showreelVideo: "/video/showreel.mp4",
   partners: ["Zemagazine", "Latisa", "Nhà sách Phương Nam", "Lotus Jewelry", "Box Studio", "Và 100+ thương hiệu khác"],
 };
