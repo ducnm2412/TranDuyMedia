@@ -14,29 +14,32 @@ export default function Hero() {
   useEffect(() => {
     const v = vid.current;
     if (matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.classList.contains("lite")) { v?.pause(); return; } // máy yếu / giảm chuyển động: ảnh tĩnh, chữ hiện luôn, không ẩn/hiện
-    if (v) {
-      // lỗi có thể xảy ra trước khi React gắn handler (trình duyệt tải video ngay khi parse HTML)
-      if (v.error || v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) setBroken(true);
-      v.muted = true; v.play().catch(() => {});
-    }
+    // lỗi có thể xảy ra trước khi React gắn handler (trình duyệt tải video ngay khi parse HTML)
+    if (v && (v.error || v.networkState === HTMLMediaElement.NETWORK_NO_SOURCE)) setBroken(true);
     const SHOW = 7500, HIDE = 10000;
     let timer = 0;
     const loop = (visible: boolean) => {
       setFade(!visible);
       timer = window.setTimeout(() => loop(!visible), visible ? SHOW : HIDE);
     };
-    timer = window.setTimeout(() => loop(false), SHOW);
+    // Chỉ phát video (từ đầu) + chu kỳ chữ sau khi màn đếm ngược 3-2-1 kết thúc, để không mất khúc đầu
+    const start = () => {
+      if (v) { v.muted = true; try { v.currentTime = 0; } catch {} v.play().catch(() => {}); }
+      timer = window.setTimeout(() => loop(false), SHOW);
+    };
+    const waiting = document.querySelector('[data-leader="on"]');
+    if (waiting) window.addEventListener("leader:done", start, { once: true }); else start();
     const clock = setInterval(() => {
       const f = ++frame.current;
       const p = (n: number) => String(n).padStart(2, "0");
       setTc(`00:${p(Math.floor(f / 1500) % 60)}:${p(Math.floor(f / 25) % 60)}:${p(f % 25)}`);
     }, 40);
-    return () => { clearInterval(clock); clearTimeout(timer); };
+    return () => { clearInterval(clock); clearTimeout(timer); window.removeEventListener("leader:done", start); };
   }, []);
   return (
     <section className={`hero${fade ? " fade" : ""}`}>
       <div className="montage">
-        <video ref={vid} src="/hero/hero.mp4" poster="/hero/reel4.jpg" muted loop playsInline autoPlay preload="metadata" aria-hidden="true" onError={() => setBroken(true)} onStalled={() => setBroken(true)} onPlaying={() => setBroken(false)} hidden={broken} />
+        <video ref={vid} src="/hero/hero.mp4" poster="/hero/reel4.jpg" muted loop playsInline preload="auto" aria-hidden="true" onError={() => setBroken(true)} onStalled={() => setBroken(true)} onPlaying={() => setBroken(false)} hidden={broken} />
       </div>
       <div className="vf"><i /><i /><i /><i /></div>
       <div className="hud a"><i />REC</div>

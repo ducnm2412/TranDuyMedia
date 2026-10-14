@@ -25,9 +25,11 @@ export default function Leader() {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [show]);
+  // báo cho Hero biết màn đếm ngược đã xong để bắt đầu phát video từ đầu
+  useEffect(() => { if (done) window.dispatchEvent(new Event("leader:done")); }, [done]);
   if (!show) return null;
   return (
-    <div className={`leader${done ? " done" : ""}`} aria-hidden="true" onClick={() => setDone(true)}>
+    <div className={`leader${done ? " done" : ""}`} data-leader={done ? "done" : "on"} aria-hidden="true" onClick={() => setDone(true)}>
       <div className="ring" ref={ring}><div className="n">{num}</div></div>
       <small>TRAN DUY MEDIA · ROLLING</small>
     </div>
