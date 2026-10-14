@@ -58,8 +58,7 @@ header{position:fixed;inset:env(safe-area-inset-top,0px) 0 auto 0;z-index:50;tra
 .hero{position:relative;background:var(--ink);color:var(--white);height:100vh;height:100svh;min-height:520px;overflow:hidden;display:flex;flex-direction:column}
 .montage{position:absolute;inset:0;z-index:0;background:#161A2C url(/hero/reel4.jpg) center/cover no-repeat}
 .montage video[hidden]{display:none}
-.montage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.04)}
-.montage::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,26,44,.5),rgba(22,26,44,.12) 60%,rgba(22,26,44,.05)),linear-gradient(180deg,rgba(22,26,44,.3),transparent 40%,rgba(22,26,44,.6))}
+.montage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:1}
 .flash.go{animation:flash .18s ease-out}
 @keyframes flash{0%{opacity:.9}100%{opacity:0}}
@@ -75,15 +74,16 @@ header{position:fixed;inset:env(safe-area-inset-top,0px) 0 auto 0;z-index:50;tra
 .hud.c{bottom:40px;left:44px}
 @keyframes blink{50%{opacity:0}}
 .hero .wrap{position:relative;z-index:3;flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(128px,17svh,160px) 0 clamp(56px,10svh,100px)}
-.hero h1{font-size:clamp(42px,min(10.5vw,11svh),160px);line-height:1.3}
+.hero h1{font-size:clamp(42px,min(10.5vw,11svh),160px);line-height:1.3;text-shadow:0 2px 6px rgba(22,26,44,.9),0 0 28px rgba(22,26,44,.6)}
 .hero h1 span{display:block;opacity:0;transform:translateX(-40px) skewX(-8deg);animation:slam .5s cubic-bezier(.2,1.2,.3,1) forwards}
 .hero h1 span:nth-child(2){animation-delay:.18s;color:var(--orange);-webkit-text-stroke:0}
 .hero h1 span:nth-child(3){animation-delay:.36s;color:transparent;-webkit-text-stroke:3px #fff}
 @keyframes slam{to{opacity:1;transform:none}}
 .hero .sub{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:clamp(20px,4svh,40px);flex-wrap:wrap;opacity:0;animation:slam .6s .7s forwards}
-.hero .sub p{max-width:46ch;font-size:18px;font-weight:500}
+.hero .sub p{max-width:46ch;font-size:18px;font-weight:500;text-shadow:0 1px 4px rgba(22,26,44,.95),0 0 16px rgba(22,26,44,.7)}
 .hero .sub .acts{display:flex;gap:16px;flex-wrap:wrap}
 .hero .sub .btn{color:#fff}
+.hero .sub .btn:not(.btn-fill){background:rgba(22,26,44,.45);backdrop-filter:blur(4px)}
 /* sau 4s: tiêu đề + mô tả trượt mờ đi, giữ nút */
 .hero.fade h1 span{animation:slamout .55s cubic-bezier(.6,0,.8,.4) forwards}
 .hero.fade h1 span:nth-child(2){animation-delay:.1s}
@@ -123,7 +123,7 @@ header{position:fixed;inset:env(safe-area-inset-top,0px) 0 auto 0;z-index:50;tra
 @media (max-width:900px){.mgrid{grid-template-columns:repeat(2,1fr);grid-auto-rows:200px}.mg:nth-child(1){grid-column:span 2;grid-row:span 1}.mg:nth-child(4){grid-row:span 1}}
 
 /* showreel */
-.reel{margin-top:40px;position:relative;aspect-ratio:2/1;background:var(--ink);overflow:hidden;border:4px solid var(--ink);box-shadow:12px 12px 0 var(--orange)}
+.reel{margin-top:40px;position:relative;aspect-ratio:16/9;background:var(--ink);overflow:hidden;border:4px solid var(--ink);box-shadow:12px 12px 0 var(--orange)}
 .reel img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);opacity:.55}
 .reel .play{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:14px;color:#fff;text-align:center}
 .reel .play .ring{width:110px;height:110px;background:var(--orange);display:grid;place-items:center;border:4px solid #fff;animation:spin 6s linear infinite;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
@@ -314,7 +314,7 @@ section.ph img{will-change:transform;height:135%;top:-35%}
 @media (max-width:640px){.lb{padding:72px 12px}.lb-nav{top:auto;bottom:14px;transform:none;width:46px;height:46px}.lb-cap{bottom:70px;padding:0 16px}}
 
 /* showreel video */
-.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#000}
+.reel video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000}
 .reel .unmute{position:absolute;right:16px;bottom:16px;display:flex;align-items:center;gap:8px;background:var(--orange);color:var(--ink);border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:9px 14px;font-weight:700;text-transform:uppercase;font-size:13px;transition:transform .15s,box-shadow .15s}
 .reel .unmute:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
 @media (max-width:640px){.reel .unmute{right:10px;bottom:10px;padding:8px 10px}.reel .unmute span{display:none}}

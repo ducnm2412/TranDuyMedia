@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Hero video: đoạn showreel 45s đầu (có intro) (public/hero/hero.mp4, 720p, không tiếng) tự chạy lặp,
+ * Hero video: 45s đầu showreel kể cả intro (public/hero/hero.mp4, 1080p, không tiếng) tự chạy lặp,
  * kèm khung REC + timecode. Máy yếu / giảm chuyển động / video lỗi → hiện ảnh reel4.
  */
 export default function Hero() {
