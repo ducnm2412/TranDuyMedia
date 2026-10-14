@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero";
 import Tape from "@/components/Tape";
 import SectionHead from "@/components/SectionHead";
 import { services, getService } from "@/lib/services";
+import Pic from "@/components/Pic";
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -29,7 +30,7 @@ export default async function Page({ params }: PageProps<"/dich-vu/[slug]">) {
       <section className="sec" style={{ paddingTop: 0 }}>
         <div className="wrap">
           <div className="svcpage">
-            <div className="spic rv"><img src={`/images/${s.img}.jpg`} alt={s.nav} /></div>
+            <div className="spic rv"><Pic name={s.img} alt={s.nav} sizes="(max-width: 860px) 100vw, 50vw" /></div>
             <div className="rv">
               <span className="k sec-k">Bạn nhận được</span>
               <h2 className="d" style={{ fontSize: "clamp(32px,4.5vw,64px)" }}>Trọn gói, một đầu mối</h2>
@@ -70,7 +71,7 @@ export default async function Page({ params }: PageProps<"/dich-vu/[slug]">) {
         <div className="wrap">
           <SectionHead kicker="Hình ảnh" title={<>Đã làm<br />gần đây</>} text="Bấm vào ảnh để xem lớn." />
           <div className="gal rv">
-            {s.gallery.map((g) => <button key={g.img} type="button" aria-label={`Xem ảnh: ${g.alt}`}><img src={`/images/${g.img}.jpg`} alt={g.alt} loading="lazy" /></button>)}
+            {s.gallery.map((g) => <button key={g.img} type="button" aria-label={`Xem ảnh: ${g.alt}`}><Pic name={g.img} alt={g.alt} sizes="(max-width: 560px) 50vw, (max-width: 900px) 33vw, 25vw" /></button>)}
           </div>
           <div style={{ marginTop: 24 }}><Link href="/thu-vien" className="btn" style={{ color: "var(--ink)" }}>Xem thư viện</Link></div>
         </div>

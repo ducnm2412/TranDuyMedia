@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import Tape from "@/components/Tape";
 import Gear from "@/components/Gear";
 import Faq from "@/components/Faq";
+import Pic from "@/components/Pic";
 
 export const metadata: Metadata = { title: "Dịch vụ", description: "Sản xuất video thương mại, cho thuê studio và chụp ảnh thương mại — gói dịch vụ và quy cách bàn giao." };
 
@@ -30,7 +31,7 @@ export default function Page() {
         <div className="wrap">
           {services.map((s) => (
             <div className="svcpage" id={s.id} key={s.id}>
-              <div className="spic rv"><img src={`/images/${s.img}.jpg`} alt={s.title} /></div>
+              <div className="spic rv"><Pic name={s.img} alt={s.title} sizes="(max-width: 860px) 100vw, 50vw" /></div>
               <div className="rv">
                 <h2 className="d">{s.title}</h2>
                 <p className="lead">{s.lead}</p>

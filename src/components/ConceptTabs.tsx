@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Pic from "@/components/Pic";
 
 const concepts = [
   { name: "Vintage", imgs: ["g6", "s051", "x049", "g7"], desc: "Phòng xanh rêu, sofa gỗ, rèm sáng, đàn guitar. Hợp lookbook, chân dung, video nội dung ấm.", size: "Góc 5×4m", light: "Ánh sáng cửa sổ + LED", fit: "Lookbook, chân dung, content" },
@@ -16,7 +17,7 @@ export default function ConceptTabs() {
     <>
       <div className="tabs" role="tablist">{concepts.map((x, k) => <button key={x.name} role="tab" aria-selected={i === k} onClick={() => setI(k)}>{x.name}</button>)}</div>
       <div className="concept">
-        <div className="cg">{c.imgs.map((im) => <figure key={im}><img src={`/images/${im}.jpg`} alt={c.name} /></figure>)}</div>
+        <div className="cg">{c.imgs.map((im) => <figure key={im}><Pic name={im} alt={c.name} sizes="(max-width: 860px) 50vw, 25vw" /></figure>)}</div>
         <div className="info">
           <h3>{c.name}</h3><p>{c.desc}</p>
           <dl><dt>Diện tích</dt><dd>{c.size}</dd><dt>Ánh sáng</dt><dd>{c.light}</dd><dt>Phù hợp</dt><dd>{c.fit}</dd></dl>

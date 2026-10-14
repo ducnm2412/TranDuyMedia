@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SectionHead from "./SectionHead";
+import Pic from "@/components/Pic";
 
 const services = [
   { n: "01", slug: "san-xuat-video", t: "Sản xuất video thương mại", img: "svc_video", items: ["TVC, iTVC, video quảng cáo push sale", "Video documentary, phóng sự thương hiệu", "Phim giới thiệu doanh nghiệp", "Video sự kiện doanh nghiệp"] },
@@ -18,7 +19,7 @@ export default function Services() {
               <div className="num">{s.n}</div>
               <h3><Link href={`/dich-vu/${s.slug}`}>{s.t}</Link></h3>
               <ul>{s.items.map((i) => <li key={i}>{i}</li>)}</ul>
-              <div className="pic"><img src={`/images/${s.img}.jpg`} alt={s.t} /></div>
+              <div className="pic"><Pic name={s.img} alt={s.t} sizes="(max-width: 900px) 100vw, 33vw" /></div>
             </article>
           ))}
         </div>

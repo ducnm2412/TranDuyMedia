@@ -16,11 +16,13 @@ export default function Lightbox() {
       const group = GROUPS.map((g) => img.closest(g)).find(Boolean);
       if (!group) return;
       // Băng ảnh thư viện được nhân đôi để chạy vòng, bỏ ảnh trùng
+      // next/image trả về bản thu nhỏ trong src; data-full là ảnh gốc để xem lớn
+      const full = (im: HTMLImageElement) => im.dataset.full || im.src;
       const seen = new Set<string>();
       const list = Array.from(group.querySelectorAll("img"))
-        .filter((im) => !seen.has(im.src) && seen.add(im.src))
-        .map((im) => ({ src: im.src, alt: im.alt }));
-      setView({ list, i: Math.max(0, list.findIndex((x) => x.src === img.src)) });
+        .filter((im) => !seen.has(full(im)) && seen.add(full(im)))
+        .map((im) => ({ src: full(im), alt: im.alt }));
+      setView({ list, i: Math.max(0, list.findIndex((x) => x.src === full(img))) });
     };
     document.addEventListener("click", onClick);
     return () => document.removeEventListener("click", onClick);
@@ -53,6 +55,7 @@ export default function Lightbox() {
   const many = view.list.length > 1;
   return (
     <div className="lb" role="dialog" aria-modal="true" aria-label="Xem ảnh" onClick={() => setView(null)}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- ảnh gốc theo yêu cầu, không qua tối ưu */}
       <img src={cur.src} alt={cur.alt} onClick={(e) => e.stopPropagation()} />
       {cur.alt && <p className="lb-cap">{cur.alt}</p>}
       <span className="lb-count">{view.i + 1} / {view.list.length}</span>

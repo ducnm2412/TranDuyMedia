@@ -46,7 +46,7 @@ export default function Hero() {
         <h1 className="d"><span>Quay.</span><span>Dựng.</span><span>Bán hàng.</span></h1>
         <div className="sub">
           <p>TVC, video quảng cáo push sale, phim doanh nghiệp, video sự kiện, chụp ảnh thương mại và cho thuê studio. Trọn gói tại TP.HCM, hơn 10 năm.</p>
-          <div className="acts"><a href="#duan" className="btn">Xem dự án</a><a href="#datlich" className="btn btn-fill">Nhận báo giá</a></div>
+          <div className="acts"><a href="#duan" className="btn">Xem dự án</a><a href="/lien-he#datlich" className="btn btn-fill">Nhận báo giá</a></div>
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Pic from "@/components/Pic";
 
 const stats: [number, string, string][] = [[10, "+", "năm sản xuất"], [300, "+", "dự án video & ảnh"], [100, "%", "trọn gói, một đầu mối"]];
 
@@ -27,7 +28,7 @@ export default function About() {
           {stats.map(([n, s, l]) => <div className="stat" key={l}><Counter to={n} suffix={s} /><span>{l}</span></div>)}
         </div>
         <div className="about">
-          <div className="pics rv"><img src="/images/about.jpg" alt="Ê-kíp tại studio" /><img src="/images/reel2.jpg" alt="Hậu trường" /><img src="/images/p6.jpg" alt="Chân dung studio" /></div>
+          <div className="pics rv"><Pic name="about" alt="Ê-kíp tại studio" sizes="(max-width: 860px) 62vw, 31vw" eager /><Pic name="reel2" alt="Hậu trường" sizes="(max-width: 860px) 62vw, 31vw" /><Pic name="p6" alt="Chân dung studio" sizes="(max-width: 860px) 62vw, 31vw" /></div>
           <div className="rv">
             <h2 className="d">Hơn 10 năm<br />đồng hành<br />cùng doanh nghiệp</h2>
             <p>TRAN DUY Media Studio bắt đầu từ một ê-kíp quay dựng nhỏ, nay gia công trọn gói video thương mại cho khách hàng, đối tác và doanh nghiệp tại TP.HCM.</p>

@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { services } from "@/lib/services";
 
 export const navLinks = [
-  ["/du-an", "Dự án"], ["/dich-vu", "Dịch vụ"], ["/quy-trinh", "Quy trình"], ["/studio", "Studio"],
+  ["/", "Trang chủ"], ["/du-an", "Dự án"], ["/dich-vu", "Dịch vụ"], ["/quy-trinh", "Quy trình"], ["/studio", "Studio"],
   ["/thu-vien", "Thư viện"], ["/ve-chung-toi", "Về chúng tôi"], ["/lien-he", "Liên hệ"],
 ];
 
@@ -19,7 +20,7 @@ export default function Header() {
     <>
       <header>
         <div className="wrap nav">
-          <Link href="/" aria-label="TRAN DUY Media"><img src="/images/logo_w.png" alt="TRAN DUY Media" /></Link>
+          <Link href="/" aria-label="TRAN DUY Media"><Image src="/images/logo_w.png" alt="TRAN DUY Media" width={120} height={60} loading="eager" /></Link>
           <ul>
             {navLinks.map(([h, l]) =>
               h === "/dich-vu" ? (
@@ -42,7 +43,6 @@ export default function Header() {
       </header>
       <nav className={`menu${open ? " open" : ""}`} aria-label="Menu di động">
         <button className="close" aria-label="Đóng" onClick={close}>×</button>
-        <Link href="/" onClick={close}>Trang chủ</Link>
         {navLinks.map(([h, l]) =>
           h === "/dich-vu" ? (
             <div key={h} className="m-sub">

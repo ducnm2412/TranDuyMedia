@@ -1,4 +1,5 @@
 import SectionHead from "./SectionHead";
+import Pic from "@/components/Pic";
 
 const pics: [string, string, string][] = [
   ["x049", "Concept studio vintage simple", "-1.5deg"], ["s039", "Bàn ghế trắng", "1deg"], ["s026", "Set đồ chơi trẻ em", "-1deg"],
@@ -15,7 +16,7 @@ export default function Studio() {
         <SectionHead kicker="Cho thuê studio" title={<>Bối cảnh<br />đổi theo mùa</>} text="Box studio, vintage, simple, Giáng sinh, concept trẻ em… dựng sẵn, đổi phông nhanh trong một buổi." />
         <div className="sgrid rv">
           {pics.map(([img, alt, r]) => (
-            <figure key={img} style={{ "--r": r } as React.CSSProperties}><img src={`/images/${img}.jpg`} alt={alt} /></figure>
+            <figure key={img} style={{ "--r": r } as React.CSSProperties}><Pic name={img} alt={alt} sizes="(max-width: 900px) 50vw, 25vw" /></figure>
           ))}
         </div>
         <div className="sinfo">
