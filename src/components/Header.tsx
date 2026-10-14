@@ -50,7 +50,7 @@ export default function Header() {
                 <Link href={h} onClick={close}>{l}</Link>
                 <button type="button" aria-label={sub ? "Thu gọn dịch vụ" : "Mở danh sách dịch vụ"} aria-expanded={sub} onClick={() => setSub((v) => !v)}>{sub ? "−" : "+"}</button>
               </div>
-              {sub && services.map((s) => <Link key={s.slug} href={`/dich-vu/${s.slug}`} className="m-sublink" onClick={close}>{s.nav}</Link>)}
+              {sub && <div className="m-subs">{services.map((s) => <Link key={s.slug} href={`/dich-vu/${s.slug}`} className="m-sublink" onClick={close}>{s.nav}</Link>)}</div>}
             </div>
           ) : (
             <Link key={h} href={h} onClick={close}>{l}</Link>

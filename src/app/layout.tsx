@@ -9,6 +9,7 @@ import Lightbox from "@/components/Lightbox";
 import RevealObserver from "@/components/RevealObserver";
 import SmoothScroll from "@/components/SmoothScroll";
 import PageTransition from "@/components/PageTransition";
+import Leader from "@/components/Leader";
 
 const anton = Anton({ variable: "--font-anton", weight: "400", subsets: ["latin", "vietnamese"] });
 const grotesk = Space_Grotesk({ variable: "--font-grotesk", weight: ["400", "500", "700"], subsets: ["latin", "vietnamese"] });
@@ -24,10 +25,11 @@ export const viewport: Viewport = { width: "device-width", initialScale: 1, view
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="vi" className={`${anton.variable} ${grotesk.variable} no-js`}>
+    <html lang="vi" className={`${anton.variable} ${grotesk.variable} no-js`} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.remove('no-js')" }} />
         <div className="progress" aria-hidden="true" />
+        <Leader />
         <Header />
         <PageTransition>{children}</PageTransition>
         <Footer />

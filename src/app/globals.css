@@ -48,16 +48,17 @@ header{position:fixed;inset:env(safe-area-inset-top,0px) 0 auto 0;z-index:50;tra
 .burger{display:none;width:44px;height:44px;place-items:center}
 .burger span{display:block;width:24px;height:3px;background:currentColor;box-shadow:0 8px 0 currentColor,0 -8px 0 currentColor}
 @media (max-width:960px){.nav ul,.nav .cta{display:none}.burger{display:grid}}
-.menu{display:none;position:fixed;inset:0;background:var(--orange);color:var(--ink);z-index:60;padding:calc(16px + env(safe-area-inset-top,0px)) 24px 24px;flex-direction:column;gap:0;overflow-y:auto}
+.menu{display:none;position:fixed;inset:0;background:var(--orange);color:var(--ink);z-index:60;padding:calc(8px + env(safe-area-inset-top,0px)) 20px calc(16px + env(safe-area-inset-bottom,0px));flex-direction:column;gap:0;overflow-y:auto}
 .menu.open{display:flex}
-.menu a{font-family:var(--font-anton),Anton,Impact,sans-serif;font-size:clamp(22px,6.5vw,30px);letter-spacing:.03em;text-transform:uppercase;line-height:1.2;border-bottom:2px solid rgba(22,26,44,.35);padding:11px 0}
-.menu .close{align-self:flex-end;font-size:30px;width:40px;height:40px;margin-bottom:8px}
+.menu a{font-family:var(--font-anton),Anton,Impact,sans-serif;font-size:clamp(18px,5vw,24px);letter-spacing:.03em;text-transform:uppercase;line-height:1.15;border-bottom:2px solid rgba(22,26,44,.35);padding:clamp(6px,1.4svh,10px) 0}
+.menu .close{align-self:flex-end;font-size:28px;width:36px;height:36px;margin-bottom:2px}
 
 /* ===== hero montage ===== */
 .hero{position:relative;background:var(--ink);color:var(--white);height:100vh;height:100svh;min-height:520px;overflow:hidden;display:flex;flex-direction:column}
-.montage{position:absolute;inset:0;z-index:0}
-.montage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;filter:grayscale(1) contrast(1.15)}
-.montage img.on{opacity:.5}
+.montage{position:absolute;inset:0;z-index:0;background:#161A2C url(/hero/reel4.jpg) center/cover no-repeat}
+.montage video[hidden]{display:none}
+.montage video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.04)}
+.montage::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,26,44,.5),rgba(22,26,44,.12) 60%,rgba(22,26,44,.05)),linear-gradient(180deg,rgba(22,26,44,.3),transparent 40%,rgba(22,26,44,.6))}
 .flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:1}
 .flash.go{animation:flash .18s ease-out}
 @keyframes flash{0%{opacity:.9}100%{opacity:0}}
@@ -82,6 +83,12 @@ header{position:fixed;inset:env(safe-area-inset-top,0px) 0 auto 0;z-index:50;tra
 .hero .sub p{max-width:46ch;font-size:18px;font-weight:500}
 .hero .sub .acts{display:flex;gap:16px;flex-wrap:wrap}
 .hero .sub .btn{color:#fff}
+/* sau 4s: tiêu đề + mô tả trượt mờ đi, giữ nút */
+.hero.fade h1 span{animation:slamout .55s cubic-bezier(.6,0,.8,.4) forwards}
+.hero.fade h1 span:nth-child(2){animation-delay:.1s}
+.hero.fade h1 span:nth-child(3){animation-delay:.2s}
+.hero.fade .sub p{animation:slamout .5s .25s cubic-bezier(.6,0,.8,.4) forwards;pointer-events:none}
+@keyframes slamout{from{opacity:1;transform:none}to{opacity:0;transform:translateX(40px) skewX(-8deg)}}
 @media (max-height:700px){.hud.c{display:none}}
 @media (max-width:640px){.hero h1{font-size:min(15vw,9svh)}.hud.c,.hud.b{display:none}.hero .vf{inset:calc(64px + 12px) 12px 12px}.hud.a{left:28px}}
 
@@ -280,16 +287,16 @@ footer .bottom{margin-top:36px;padding-top:16px;padding-right:90px;border-top:1p
 .faq details p{padding:0 0 22px;max-width:70ch;font-weight:500}
 
 /* reveal */
-.rv{opacity:0;transform:translateY(30px) rotate(-1deg);transition:opacity .5s cubic-bezier(.2,1.2,.3,1),transform .5s cubic-bezier(.2,1.2,.3,1)}
-.rv.in{opacity:1;transform:none}
-.rv.stg{transform:translateY(20px)}
+.rv,:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps){opacity:0;transform:translateY(30px) rotate(-1deg);transition:opacity .5s cubic-bezier(.2,1.2,.3,1),transform .5s cubic-bezier(.2,1.2,.3,1)}
+.rv.in,:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in{opacity:1;transform:none}
+:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps){transform:translateY(20px)}
 html[data-dir="up"] .rv:not(.in){transform:translateY(-30px) rotate(1deg)}
 header.hide{transform:translateY(-100%)}
 section.ph img{will-change:transform;height:135%;top:-35%}
 @media (prefers-reduced-motion:reduce){
   .leader{display:none}.rv,.hero h1 span,.hero .sub{opacity:1;transform:none;animation:none}
   .tape .t,.row .tr,.reel .play .ring,.reel .play .ring svg,.map .pin,.hud.a i{animation:none}
-  .montage img:first-child{opacity:.5}.flash{display:none}
+  .flash{display:none}
 }
 
 /* ===== xem ảnh lớn ===== */
@@ -448,9 +455,9 @@ header .nav ul a.on{background:var(--orange);color:var(--ink)}
 .pt{animation:pagein .55s cubic-bezier(.2,.8,.2,1) both}
 @keyframes pagein{from{opacity:0;translate:0 14px}to{opacity:1;translate:0 0}}
 /* con của lưới hiện lần lượt; dùng translate (không phải transform) để không đè hiệu ứng hover */
-.stg.in>*{animation:popin .6s cubic-bezier(.2,1.2,.3,1) backwards;animation-delay:calc(min(var(--i,0),11)*70ms)}
+:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>*{animation:popin .6s cubic-bezier(.2,1.2,.3,1) backwards;animation-delay:770ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(2){animation-delay:70ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(3){animation-delay:140ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(4){animation-delay:210ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(5){animation-delay:280ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(6){animation-delay:350ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(7){animation-delay:420ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(8){animation-delay:490ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(9){animation-delay:560ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(10){animation-delay:630ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(11){animation-delay:700ms}:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>:nth-child(12){animation-delay:770ms}
 @keyframes popin{from{opacity:0;translate:0 26px;scale:.97}to{opacity:1;translate:0 0;scale:1}}
-html[data-dir="up"] .stg.in>*{animation-name:popdown}
+html[data-dir="up"] :is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>*{animation-name:popdown}
 @keyframes popdown{from{opacity:0;translate:0 -22px}to{opacity:1;translate:0 0}}
 /* tiêu đề section trồi lên qua mặt nạ, nhãn nhỏ nảy ra */
 .sec-head.in h2.d{animation:rise .75s cubic-bezier(.2,.9,.2,1) backwards .05s}
@@ -466,7 +473,7 @@ html[data-dir="up"] .stg.in>*{animation-name:popdown}
 .btn{position:relative;overflow:hidden}
 .btn::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);translate:-120% 0;transition:translate .6s ease}
 .btn:hover::after{translate:120% 0}
-@media (prefers-reduced-motion:reduce){.pt,.stg.in>*,.sec-head.in h2.d,.sec-head.in .k,.rv.in.reel video,.rv.in.reel img,.svcpage .spic.in img,.about .pics.in img{animation:none}.btn::after{display:none}.progress{display:none}}
+@media (prefers-reduced-motion:reduce){.pt,:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>*,.sec-head.in h2.d,.sec-head.in .k,.rv.in.reel video,.rv.in.reel img,.svcpage .spic.in img,.about .pics.in img{animation:none}.btn::after{display:none}.progress{display:none}}
 
 /* bản đồ gọn trong footer */
 footer .top{align-items:flex-start}
@@ -500,15 +507,15 @@ footer .top{align-items:flex-start}
 }
 
 /* ===== chế độ nhẹ (máy yếu, tiết kiệm dữ liệu, giảm chuyển động, trình duyệt cũ) ===== */
-html.lite .pt,html.lite .stg.in>*,html.lite .sec-head.in h2.d,html.lite .sec-head.in .k,html.lite .rv.in.reel video,html.lite .rv.in.reel img,html.lite .svcpage .spic.in img,html.lite .about .pics.in img,html.lite .leader{animation:none}
+html.lite .pt,html.lite :is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>*,html.lite .sec-head.in h2.d,html.lite .sec-head.in .k,html.lite .rv.in.reel video,html.lite .rv.in.reel img,html.lite .svcpage .spic.in img,html.lite .about .pics.in img,html.lite .leader{animation:none}
 html.lite .btn::after,html.lite .progress,html.lite .flash{display:none}
 html.lite .rv{transform:none;transition:opacity .3s}
 html.lite header{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(22,26,44,.92)}
 html.lite section.ph img{transform:none!important}
 html.lite .tape .t,html.lite .row .tr{animation-duration:calc(var(--sp,18s)*1.6)}
 /* trình duyệt không có IntersectionObserver / JS lỗi: vẫn thấy nội dung */
-html.no-js .rv,html.lite .rv{opacity:1}
-@supports not (translate:0){.stg.in>*{animation:none}.pt{animation:none}}
+html.no-js .rv,html.lite .rv,html.no-js :is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps),html.lite :is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps){opacity:1}
+@supports not (translate:0){:is(.mgrid,.svcs,.sgrid,.stats,.ggrid,.check,.tl,.values,.years,.team,.pkgs,.cases,.cgrid,.fbgrid,.lanes,.strip2,.gal,.steps).in>*{animation:none}.pt{animation:none}}
 
 /* ===== dropdown Dịch vụ ===== */
 .nav ul li{position:relative}
@@ -524,7 +531,8 @@ html.no-js .rv,html.lite .rv{opacity:1}
 .menu .m-sub{display:flex;flex-direction:column}
 .menu .m-row{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid rgba(22,26,44,.35)}
 .menu .m-row a{border-bottom:0;flex:1}
-.menu .m-row button{width:44px;height:44px;font-size:28px;line-height:1;font-weight:700}
-.menu .m-sublink{font-family:var(--font-grotesk),"Space Grotesk",sans-serif;font-size:15px;font-weight:700;text-transform:none;letter-spacing:0;padding:9px 0 9px 18px;border-bottom:1px dashed rgba(22,26,44,.35)}
+.menu .m-row button{width:40px;height:36px;font-size:24px;line-height:1;font-weight:700}
+.menu .m-subs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px 0 10px;border-bottom:2px solid rgba(22,26,44,.35)}
+.menu .m-sublink{font-family:var(--font-grotesk),"Space Grotesk",sans-serif;font-size:13px;font-weight:700;text-transform:none;letter-spacing:0;line-height:1.25;padding:8px 10px;border:2px solid rgba(22,26,44,.45);background:rgba(255,255,255,.18)}
 .sec-k{font-family:var(--font-anton),Anton,Impact,sans-serif;font-size:14px;letter-spacing:.15em;text-transform:uppercase;background:var(--orange);color:var(--ink);padding:4px 10px;display:inline-block;margin-bottom:12px;transform:rotate(-2deg)}
 .svc h3 a:hover{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:4px}

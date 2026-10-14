@@ -1,4 +1,3 @@
-import Leader from "@/components/Leader";
 import Hero from "@/components/Hero";
 import Tape from "@/components/Tape";
 import Showcase from "@/components/Showcase";
@@ -17,7 +16,6 @@ import { site } from "@/lib/site";
 export default function Page() {
   return (
     <>
-      <Leader />
       <main id="top">
         <Hero />
         <Tape words={["Rolling", "Action", "TVC", "Phim doanh nghiệp", "Video sự kiện", "Chụp ảnh thương mại", "Thuê studio", "Cut"]} />
