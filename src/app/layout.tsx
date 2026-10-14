@@ -18,7 +18,13 @@ export const metadata: Metadata = {
   title: { default: "TRAN DUY Media Studio — Quay. Dựng. Bán.", template: "%s — TRAN DUY Media Studio" },
   description:
     "TRAN DUY Media Studio: sản xuất video quảng cáo, TVC, phim doanh nghiệp, chụp ảnh thương mại và cho thuê studio tại TP.HCM. 10+ năm, trọn gói.",
-  openGraph: { title: "TRAN DUY Media Studio", description: "Sản xuất video thương mại, chụp ảnh thương mại, cho thuê studio tại TP.HCM.", images: ["/images/hero.jpg"] },
+  metadataBase: new URL("https://tran-duy-media.vercel.app"),
+  openGraph: {
+    title: "TRAN DUY Media Studio",
+    description: "Sản xuất video thương mại, chụp ảnh thương mại, cho thuê studio tại TP.HCM.",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "TRAN DUY Media Studio" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/og.jpg"] },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
